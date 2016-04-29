@@ -80,19 +80,19 @@
 
 
 
-<meta name="description" content="在ios系统中，音量键控制一般是用于调节铃声。通常只有在播放音乐时，才会切换成调节媒体音量的模式。而两者又是相互独立的。最近遇到了一个需求，是在播放语音的页面中使音量键全程控制媒体音量。
-具体的处理方法如下，先是在ViewdidLoad中调用initAudioSession方法，监听音量变化事件。然后在音量变化时，对musicplayer写入变化后的音量。由于写入音量也会导致音量变化事件，因此通过">
+<meta name="description" content="需求：在ios系统中，音量键控制一般是用于调节铃声。通常只有在播放音乐时，才会切换成调节媒体音量的模式。而铃声和音量又是相互独立的。最近遇到了一个需求，是在播放语音的页面中使音量键全程控制媒体音量。
+具体的处理方法如下：先是在ViewdidLoad中调用initAudioSession方法，监听音量变化事件。然后在监听到音量变化时，对musicplayer写入变化后的音量。由于写入音量同样会触发音">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ios音量键调节媒体音量">
 <meta property="og:url" content="http://yoursite.com/2016/04/29/ios音量键调节媒体音量/index.html">
 <meta property="og:site_name" content="雄黄酒的技术博客">
-<meta property="og:description" content="在ios系统中，音量键控制一般是用于调节铃声。通常只有在播放音乐时，才会切换成调节媒体音量的模式。而两者又是相互独立的。最近遇到了一个需求，是在播放语音的页面中使音量键全程控制媒体音量。
-具体的处理方法如下，先是在ViewdidLoad中调用initAudioSession方法，监听音量变化事件。然后在音量变化时，对musicplayer写入变化后的音量。由于写入音量也会导致音量变化事件，因此通过">
-<meta property="og:updated_time" content="2016-04-29T04:04:45.000Z">
+<meta property="og:description" content="需求：在ios系统中，音量键控制一般是用于调节铃声。通常只有在播放音乐时，才会切换成调节媒体音量的模式。而铃声和音量又是相互独立的。最近遇到了一个需求，是在播放语音的页面中使音量键全程控制媒体音量。
+具体的处理方法如下：先是在ViewdidLoad中调用initAudioSession方法，监听音量变化事件。然后在监听到音量变化时，对musicplayer写入变化后的音量。由于写入音量同样会触发音">
+<meta property="og:updated_time" content="2016-04-29T05:40:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ios音量键调节媒体音量">
-<meta name="twitter:description" content="在ios系统中，音量键控制一般是用于调节铃声。通常只有在播放音乐时，才会切换成调节媒体音量的模式。而两者又是相互独立的。最近遇到了一个需求，是在播放语音的页面中使音量键全程控制媒体音量。
-具体的处理方法如下，先是在ViewdidLoad中调用initAudioSession方法，监听音量变化事件。然后在音量变化时，对musicplayer写入变化后的音量。由于写入音量也会导致音量变化事件，因此通过">
+<meta name="twitter:description" content="需求：在ios系统中，音量键控制一般是用于调节铃声。通常只有在播放音乐时，才会切换成调节媒体音量的模式。而铃声和音量又是相互独立的。最近遇到了一个需求，是在播放语音的页面中使音量键全程控制媒体音量。
+具体的处理方法如下：先是在ViewdidLoad中调用initAudioSession方法，监听音量变化事件。然后在监听到音量变化时，对musicplayer写入变化后的音量。由于写入音量同样会触发音">
 
 
 
@@ -155,7 +155,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">coder Mick's blog</p>
+  <p class="site-subtitle"></p>
 </div>
 
 <div class="site-nav-toggle">
@@ -316,13 +316,18 @@
       
 
       
-        <p>在ios系统中，音量键控制一般是用于调节铃声。通常只有在播放音乐时，才会切换成调节媒体音量的模式。而两者又是相互独立的。最近遇到了一个需求，是在播放语音的页面中使音量键全程控制媒体音量。</p>
-<p>具体的处理方法如下，先是在ViewdidLoad中调用initAudioSession方法，监听音量变化事件。<br>然后在音量变化时，对musicplayer写入变化后的音量。<br>由于写入音量也会导致音量变化事件，因此通过lastVolume判断是否为音量键改变的音量。</p>
+        <h4 id="需求："><a href="#需求：" class="headerlink" title="需求："></a>需求：</h4><p>在ios系统中，音量键控制一般是用于调节铃声。通常只有在播放音乐时，才会切换成调节媒体音量的模式。而铃声和音量又是相互独立的。最近遇到了一个需求，是在播放语音的页面中使音量键全程控制媒体音量。</p>
+<h4 id="具体的处理方法如下："><a href="#具体的处理方法如下：" class="headerlink" title="具体的处理方法如下："></a>具体的处理方法如下：</h4><p>先是在ViewdidLoad中调用initAudioSession方法，监听音量变化事件。<br>然后在监听到音量变化时，对musicplayer写入变化后的音量。<br>由于写入音量同样会触发音量变化事件，因此通过lastVolume判断是否为音量键改变的音量。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">@interface ViewController ()</span><br><span class="line">@property (nonatomic,assign) float lastVolume;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">-(void)initAudioSession&#123;</span><br><span class="line">    NSError *error;</span><br><span class="line">    [[AVAudioSession sharedInstance] setActive:YES error:&amp;error];</span><br><span class="line"></span><br><span class="line">    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(volumeChanged:) name:@&quot;AVSystemController_SystemVolumeDidChangeNotification&quot; object:nil];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)volumeChanged:(NSNotification *)notification</span><br><span class="line">&#123;</span><br><span class="line">    float volume =</span><br><span class="line">    [[[notification userInfo]</span><br><span class="line">      objectForKey:@&quot;AVSystemController_AudioVolumeNotificationParameter&quot;]</span><br><span class="line">     floatValue];</span><br><span class="line">     </span><br><span class="line">    if (volume != _lastVolume)&#123;</span><br><span class="line">    [[MPMusicPlayerController applicationMusicPlayer] setVolume:volume];</span><br><span class="line">        _lastVolume = volume;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这个方法解决的了一定的问题，然而有两个缺点：<br>一是MPMusicPlayerController 的setVolume方法在ios7以后已经不再支持，虽然仍然可以运行，但苹果推荐用MPVolumeView替代。<br>解决代码如下:</p>
+<h4 id="优化"><a href="#优化" class="headerlink" title="优化:"></a>优化:</h4><p>这个方法解决的了一定的问题，然而有两个缺点：</p>
+<ul>
+<li><p>一是MPMusicPlayerController 的setVolume方法在ios7以后已经不再支持，虽然仍然可以运行，但苹果推荐用MPVolumeView替代。<br>优化代码如下:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">@interface YuyinFanyiViewController ()</span><br><span class="line">@property (nonatomic,assign) float lastVolume;</span><br><span class="line">@property (nonatomic,weak) UISlider *slider;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    MPVolumeView *volumeView= [[MPVolumeView alloc] init];</span><br><span class="line">    [self.view addSubview:volumeView];</span><br><span class="line">    for (UIControl *view in volumeView.subviews) &#123;</span><br><span class="line">        if ([view.superclass isSubclassOfClass:[UISlider class]]) &#123;</span><br><span class="line">            self.slider = (UISlider *)view;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    self.slider.autoresizesSubviews = NO;</span><br><span class="line">    self.slider.autoresizingMask = UIViewAutoresizingNone;</span><br><span class="line">    [self.view addSubview:self.slider];</span><br><span class="line">    self.slider.hidden = YES;</span><br><span class="line">    _lastVolume = [[AVAudioSession sharedInstance] outputVolume];</span><br><span class="line"></span><br><span class="line">    [self initAudioSession];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(void)initAudioSession&#123;</span><br><span class="line">    NSError *error;</span><br><span class="line">    [[AVAudioSession sharedInstance] setActive:YES error:&amp;error];</span><br><span class="line"></span><br><span class="line">    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(volumeChanged:) name:@&quot;AVSystemController_SystemVolumeDidChangeNotification&quot; object:nil];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)volumeChanged:(NSNotification *)notification</span><br><span class="line">&#123;</span><br><span class="line">    float volume =</span><br><span class="line">    [[[notification userInfo]</span><br><span class="line">      objectForKey:@&quot;AVSystemController_AudioVolumeNotificationParameter&quot;]</span><br><span class="line">     floatValue];</span><br><span class="line">    if (volume != _lastVolume)&#123;</span><br><span class="line">    //[[MPMusicPlayerController applicationMusicPlayer] setVolume:volume];</span><br><span class="line">        self.slider.value = volume;</span><br><span class="line">        _lastVolume = volume;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>二是在本需求中，播放一段科大讯飞提供的翻译语音后，再进行调节音量，会出现媒体音量和系统铃声同时更改的效果。这显然是不正常的。最终的解决方案是，在语音播放结束的代理方法中重新获取当前音量，并监听音量变化，即initAudioSession方法。代码如下：</p>
+</li>
+<li><p>二是在本需求中，播放一段科大讯飞提供的翻译语音后，再进行调节音量，会出现媒体音量和系统铃声同时更改的效果。这显然是不正常的。最终的解决方案是，在语音播放结束的代理方法中重新获取当前音量，并监听音量变化，即initAudioSession方法。代码如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (void)FanyiBofangEND</span><br><span class="line">&#123;</span><br><span class="line">    _lastVolume = [[AVAudioSession sharedInstance] outputVolume];</span><br><span class="line">    [self initAudioSession];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
     </div>
@@ -450,7 +455,7 @@
                src="/images/default_avatar.jpg"
                alt="Mick" />
           <p class="site-author-name" itemprop="name">Mick</p>
-          <p class="site-description motion-element" itemprop="description"></p>
+          <p class="site-description motion-element" itemprop="description">ios developer, work in 16fan.com</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -494,7 +499,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#需求："><span class="nav-number">1.</span> <span class="nav-text">需求：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#具体的处理方法如下："><span class="nav-number">2.</span> <span class="nav-text">具体的处理方法如下：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优化"><span class="nav-number">3.</span> <span class="nav-text">优化:</span></a></li></ol></div>
             
           </div>
         </section>
