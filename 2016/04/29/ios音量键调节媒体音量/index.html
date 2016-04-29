@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="媒体音量,音量键,Objective-C,ios," />
 
 
 
@@ -80,15 +80,19 @@
 
 
 
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="雄黄酒的技术博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="在ios系统中，音量键控制一般是用于调节铃声。通常只有在播放音乐时，才会切换成调节媒体音量的模式。而两者又是相互独立的。最近遇到了一个需求，是在播放语音的页面中使音量键全程控制媒体音量。
+具体的处理方法如下，先是在ViewdidLoad中调用initAudioSession方法，监听音量变化事件。然后在音量变化时，对musicplayer写入变化后的音量。由于写入音量也会导致音量变化事件，因此通过">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ios音量键调节媒体音量">
+<meta property="og:url" content="http://yoursite.com/2016/04/29/ios音量键调节媒体音量/index.html">
 <meta property="og:site_name" content="雄黄酒的技术博客">
-<meta property="og:description">
+<meta property="og:description" content="在ios系统中，音量键控制一般是用于调节铃声。通常只有在播放音乐时，才会切换成调节媒体音量的模式。而两者又是相互独立的。最近遇到了一个需求，是在播放语音的页面中使音量键全程控制媒体音量。
+具体的处理方法如下，先是在ViewdidLoad中调用initAudioSession方法，监听音量变化事件。然后在音量变化时，对musicplayer写入变化后的音量。由于写入音量也会导致音量变化事件，因此通过">
+<meta property="og:updated_time" content="2016-04-29T04:04:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="雄黄酒的技术博客">
-<meta name="twitter:description">
+<meta name="twitter:title" content="ios音量键调节媒体音量">
+<meta name="twitter:description" content="在ios系统中，音量键控制一般是用于调节铃声。通常只有在播放音乐时，才会切换成调节媒体音量的模式。而两者又是相互独立的。最近遇到了一个需求，是在播放语音的页面中使音量键全程控制媒体音量。
+具体的处理方法如下，先是在ViewdidLoad中调用initAudioSession方法，监听音量变化事件。然后在音量变化时，对musicplayer写入变化后的音量。由于写入音量也会导致音量变化事件，因此通过">
 
 
 
@@ -106,7 +110,7 @@
   };
 </script>
 
-  <title> 雄黄酒的技术博客 </title>
+  <title> ios音量键调节媒体音量 | 雄黄酒的技术博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -137,9 +141,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -236,9 +238,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -258,10 +260,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/04/29/ios音量键调节媒体音量/" itemprop="url">
-                  ios音量键调节媒体音量
-                </a>
+                ios音量键调节媒体音量
               
             
           </h1>
@@ -317,9 +316,7 @@
       
 
       
-        
-          
-            <p>在ios系统中，音量键控制一般是用于调节铃声。通常只有在播放音乐时，才会切换成调节媒体音量的模式。而两者又是相互独立的。最近遇到了一个需求，是在播放语音的页面中使音量键全程控制媒体音量。</p>
+        <p>在ios系统中，音量键控制一般是用于调节铃声。通常只有在播放音乐时，才会切换成调节媒体音量的模式。而两者又是相互独立的。最近遇到了一个需求，是在播放语音的页面中使音量键全程控制媒体音量。</p>
 <p>具体的处理方法如下，先是在ViewdidLoad中调用initAudioSession方法，监听音量变化事件。<br>然后在音量变化时，对musicplayer写入变化后的音量。<br>由于写入音量也会导致音量变化事件，因此通过lastVolume判断是否为音量键改变的音量。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">@interface ViewController ()</span><br><span class="line">@property (nonatomic,assign) float lastVolume;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">-(void)initAudioSession&#123;</span><br><span class="line">    NSError *error;</span><br><span class="line">    [[AVAudioSession sharedInstance] setActive:YES error:&amp;error];</span><br><span class="line"></span><br><span class="line">    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(volumeChanged:) name:@&quot;AVSystemController_SystemVolumeDidChangeNotification&quot; object:nil];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)volumeChanged:(NSNotification *)notification</span><br><span class="line">&#123;</span><br><span class="line">    float volume =</span><br><span class="line">    [[[notification userInfo]</span><br><span class="line">      objectForKey:@&quot;AVSystemController_AudioVolumeNotificationParameter&quot;]</span><br><span class="line">     floatValue];</span><br><span class="line">     </span><br><span class="line">    if (volume != _lastVolume)&#123;</span><br><span class="line">    [[MPMusicPlayerController applicationMusicPlayer] setVolume:volume];</span><br><span class="line">        _lastVolume = volume;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这个方法解决的了一定的问题，然而有两个缺点：<br>一是MPMusicPlayerController 的setVolume方法在ios7以后已经不再支持，虽然仍然可以运行，但苹果推荐用MPVolumeView替代。<br>解决代码如下:</p>
@@ -327,264 +324,82 @@
 <p>二是在本需求中，播放一段科大讯飞提供的翻译语音后，再进行调节音量，会出现媒体音量和系统铃声同时更改的效果。这显然是不正常的。最终的解决方案是，在语音播放结束的代理方法中重新获取当前音量，并监听音量变化，即initAudioSession方法。代码如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (void)FanyiBofangEND</span><br><span class="line">&#123;</span><br><span class="line">    _lastVolume = [[AVAudioSession sharedInstance] outputVolume];</span><br><span class="line">    [self initAudioSession];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-          
-        
       
     </div>
     
     <div>
       
+        
+      
     </div>
 
     <div>
+      
+        
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/29/firstblog/" itemprop="url">
-                  第一篇博客
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-29T11:47:24+08:00" content="2016-04-29">
-              2016-04-29
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/媒体音量/" rel="tag">#媒体音量</a>
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/29/firstblog/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/29/firstblog/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
+            <a href="/tags/音量键/" rel="tag">#音量键</a>
           
-
+            <a href="/tags/Objective-C/" rel="tag">#Objective-C</a>
           
-
-          
-          
-             <span id="/2016/04/29/firstblog/" class="leancloud_visitors" data-flag-title="第一篇博客">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
+            <a href="/tags/ios/" rel="tag">#ios</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>最近打算开始写技术博客，梳理知识，分享并记录一些想法。<br>最终决定采用了github+hexo部署方式，主题用的是NEXT。<br>搭建方法很简单，花了个把小时就搞定了。</p>
-
-          
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/04/29/firstblog/" rel="next" title="第一篇博客">
+                <i class="fa fa-chevron-left"></i> 第一篇博客
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2016/04/29/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-29T09:41:09+08:00" content="2016-04-29">
-              2016-04-29
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/29/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/29/hello-world/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/04/29/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/04/29/ios音量键调节媒体音量/"
+     data-title="ios音量键调节媒体音量"
+     data-content=""
+     data-url="http://yoursite.com/2016/04/29/ios音量键调节媒体音量/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
 
 
           </div>
@@ -592,6 +407,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/29/ios音量键调节媒体音量/"
+           data-title="ios音量键调节媒体音量" data-url="http://yoursite.com/2016/04/29/ios音量键调节媒体音量/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -611,8 +434,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/default_avatar.jpg"
@@ -655,6 +487,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -751,6 +594,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
