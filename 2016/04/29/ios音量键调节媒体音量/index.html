@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next pisces use-motion">
+<html class="theme-next muse use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -80,26 +80,23 @@
 
 
 
-<meta name="description" content="需求：在ios系统中，音量键控制一般是用于调节铃声。通常只有在播放音乐时，才会切换成调节媒体音量的模式。而铃声和音量又是相互独立的。最近遇到了一个需求，是在播放语音的页面中使音量键全程控制媒体音量。
-具体的处理方法如下：先是在ViewdidLoad中调用initAudioSession方法，监听音量变化事件。然后在监听到音量变化时，对musicplayer写入变化后的音量。由于写入音量同样会触发音">
+<meta name="description" content="需求：在ios系统中，音量键控制一般是用于调节铃声。通常只有在播放音乐时，才会切换成调节媒体音量的模式。而铃声和音量又是相互独立的。最近遇到了一个需求，是在播放语音的页面中使音量键全程控制媒体音量。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ios音量键调节媒体音量">
 <meta property="og:url" content="http://yoursite.com/2016/04/29/ios音量键调节媒体音量/index.html">
 <meta property="og:site_name" content="蓝猫mick的技术博客">
-<meta property="og:description" content="需求：在ios系统中，音量键控制一般是用于调节铃声。通常只有在播放音乐时，才会切换成调节媒体音量的模式。而铃声和音量又是相互独立的。最近遇到了一个需求，是在播放语音的页面中使音量键全程控制媒体音量。
-具体的处理方法如下：先是在ViewdidLoad中调用initAudioSession方法，监听音量变化事件。然后在监听到音量变化时，对musicplayer写入变化后的音量。由于写入音量同样会触发音">
-<meta property="og:updated_time" content="2016-04-29T05:40:50.000Z">
+<meta property="og:description" content="需求：在ios系统中，音量键控制一般是用于调节铃声。通常只有在播放音乐时，才会切换成调节媒体音量的模式。而铃声和音量又是相互独立的。最近遇到了一个需求，是在播放语音的页面中使音量键全程控制媒体音量。">
+<meta property="og:updated_time" content="2016-04-29T07:59:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ios音量键调节媒体音量">
-<meta name="twitter:description" content="需求：在ios系统中，音量键控制一般是用于调节铃声。通常只有在播放音乐时，才会切换成调节媒体音量的模式。而铃声和音量又是相互独立的。最近遇到了一个需求，是在播放语音的页面中使音量键全程控制媒体音量。
-具体的处理方法如下：先是在ViewdidLoad中调用initAudioSession方法，监听音量变化事件。然后在监听到音量变化时，对musicplayer写入变化后的音量。由于写入音量同样会触发音">
+<meta name="twitter:description" content="需求：在ios系统中，音量键控制一般是用于调节铃声。通常只有在播放音乐时，才会切换成调节媒体音量的模式。而铃声和音量又是相互独立的。最近遇到了一个需求，是在播放语音的页面中使音量键全程控制媒体音量。">
 
 
 
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Pisces',
+    scheme: 'Muse',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -316,7 +313,7 @@
       
 
       
-        <h4 id="需求："><a href="#需求：" class="headerlink" title="需求："></a>需求：</h4><p>在ios系统中，音量键控制一般是用于调节铃声。通常只有在播放音乐时，才会切换成调节媒体音量的模式。而铃声和音量又是相互独立的。最近遇到了一个需求，是在播放语音的页面中使音量键全程控制媒体音量。</p>
+        <h4 id="需求："><a href="#需求：" class="headerlink" title="需求："></a>需求：</h4><p>在ios系统中，音量键控制一般是用于调节铃声。通常只有在播放音乐时，才会切换成调节媒体音量的模式。而铃声和音量又是相互独立的。最近遇到了一个需求，是在播放语音的页面中使音量键全程控制媒体音量。<br><a id="more"></a> </p>
 <h4 id="具体的处理方法如下："><a href="#具体的处理方法如下：" class="headerlink" title="具体的处理方法如下："></a>具体的处理方法如下：</h4><p>先是在ViewdidLoad中调用initAudioSession方法，监听音量变化事件。<br>然后在监听到音量变化时，对musicplayer写入变化后的音量。<br>由于写入音量同样会触发音量变化事件，因此通过lastVolume判断是否为音量键改变的音量。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">@interface ViewController ()</span><br><span class="line">@property (nonatomic,assign) float lastVolume;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">-(void)initAudioSession&#123;</span><br><span class="line">    NSError *error;</span><br><span class="line">    [[AVAudioSession sharedInstance] setActive:YES error:&amp;error];</span><br><span class="line"></span><br><span class="line">    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(volumeChanged:) name:@&quot;AVSystemController_SystemVolumeDidChangeNotification&quot; object:nil];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)volumeChanged:(NSNotification *)notification</span><br><span class="line">&#123;</span><br><span class="line">    float volume =</span><br><span class="line">    [[[notification userInfo]</span><br><span class="line">      objectForKey:@&quot;AVSystemController_AudioVolumeNotificationParameter&quot;]</span><br><span class="line">     floatValue];</span><br><span class="line">     </span><br><span class="line">    if (volume != _lastVolume)&#123;</span><br><span class="line">    [[MPMusicPlayerController applicationMusicPlayer] setVolume:volume];</span><br><span class="line">        _lastVolume = volume;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="优化"><a href="#优化" class="headerlink" title="优化:"></a>优化:</h4><p>这个方法解决的了一定的问题，然而有两个缺点：</p>
@@ -455,7 +452,7 @@
                src="/images/avatar.png"
                alt="Mick" />
           <p class="site-author-name" itemprop="name">Mick</p>
-          <p class="site-description motion-element" itemprop="description">ios developer, work in 16fan.com</p>
+          <p class="site-description motion-element" itemprop="description">ios developer</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -532,7 +529,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
+    NexT.Muse
   </a>
 </div>
 
@@ -597,13 +594,6 @@
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
-
-
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>

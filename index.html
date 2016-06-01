@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next pisces use-motion">
+<html class="theme-next muse use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -80,22 +80,22 @@
 
 
 
-<meta name="description" content="ios developer, work in 16fan.com">
+<meta name="description" content="ios developer">
 <meta property="og:type" content="website">
 <meta property="og:title" content="蓝猫mick的技术博客">
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="蓝猫mick的技术博客">
-<meta property="og:description" content="ios developer, work in 16fan.com">
+<meta property="og:description" content="ios developer">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="蓝猫mick的技术博客">
-<meta name="twitter:description" content="ios developer, work in 16fan.com">
+<meta name="twitter:description" content="ios developer">
 
 
 
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Pisces',
+    scheme: 'Muse',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -318,21 +318,12 @@
 
       
         
-          
-            <h4 id="需求："><a href="#需求：" class="headerlink" title="需求："></a>需求：</h4><p>在ios系统中，音量键控制一般是用于调节铃声。通常只有在播放音乐时，才会切换成调节媒体音量的模式。而铃声和音量又是相互独立的。最近遇到了一个需求，是在播放语音的页面中使音量键全程控制媒体音量。</p>
-<h4 id="具体的处理方法如下："><a href="#具体的处理方法如下：" class="headerlink" title="具体的处理方法如下："></a>具体的处理方法如下：</h4><p>先是在ViewdidLoad中调用initAudioSession方法，监听音量变化事件。<br>然后在监听到音量变化时，对musicplayer写入变化后的音量。<br>由于写入音量同样会触发音量变化事件，因此通过lastVolume判断是否为音量键改变的音量。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">@interface ViewController ()</span><br><span class="line">@property (nonatomic,assign) float lastVolume;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">-(void)initAudioSession&#123;</span><br><span class="line">    NSError *error;</span><br><span class="line">    [[AVAudioSession sharedInstance] setActive:YES error:&amp;error];</span><br><span class="line"></span><br><span class="line">    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(volumeChanged:) name:@&quot;AVSystemController_SystemVolumeDidChangeNotification&quot; object:nil];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)volumeChanged:(NSNotification *)notification</span><br><span class="line">&#123;</span><br><span class="line">    float volume =</span><br><span class="line">    [[[notification userInfo]</span><br><span class="line">      objectForKey:@&quot;AVSystemController_AudioVolumeNotificationParameter&quot;]</span><br><span class="line">     floatValue];</span><br><span class="line">     </span><br><span class="line">    if (volume != _lastVolume)&#123;</span><br><span class="line">    [[MPMusicPlayerController applicationMusicPlayer] setVolume:volume];</span><br><span class="line">        _lastVolume = volume;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="优化"><a href="#优化" class="headerlink" title="优化:"></a>优化:</h4><p>这个方法解决的了一定的问题，然而有两个缺点：</p>
-<ul>
-<li><p>一是MPMusicPlayerController 的setVolume方法在ios7以后已经不再支持，虽然仍然可以运行，但苹果推荐用MPVolumeView替代。<br>优化代码如下:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">@interface YuyinFanyiViewController ()</span><br><span class="line">@property (nonatomic,assign) float lastVolume;</span><br><span class="line">@property (nonatomic,weak) UISlider *slider;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    MPVolumeView *volumeView= [[MPVolumeView alloc] init];</span><br><span class="line">    [self.view addSubview:volumeView];</span><br><span class="line">    for (UIControl *view in volumeView.subviews) &#123;</span><br><span class="line">        if ([view.superclass isSubclassOfClass:[UISlider class]]) &#123;</span><br><span class="line">            self.slider = (UISlider *)view;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    self.slider.autoresizesSubviews = NO;</span><br><span class="line">    self.slider.autoresizingMask = UIViewAutoresizingNone;</span><br><span class="line">    [self.view addSubview:self.slider];</span><br><span class="line">    self.slider.hidden = YES;</span><br><span class="line">    _lastVolume = [[AVAudioSession sharedInstance] outputVolume];</span><br><span class="line"></span><br><span class="line">    [self initAudioSession];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(void)initAudioSession&#123;</span><br><span class="line">    NSError *error;</span><br><span class="line">    [[AVAudioSession sharedInstance] setActive:YES error:&amp;error];</span><br><span class="line"></span><br><span class="line">    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(volumeChanged:) name:@&quot;AVSystemController_SystemVolumeDidChangeNotification&quot; object:nil];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)volumeChanged:(NSNotification *)notification</span><br><span class="line">&#123;</span><br><span class="line">    float volume =</span><br><span class="line">    [[[notification userInfo]</span><br><span class="line">      objectForKey:@&quot;AVSystemController_AudioVolumeNotificationParameter&quot;]</span><br><span class="line">     floatValue];</span><br><span class="line">    if (volume != _lastVolume)&#123;</span><br><span class="line">    //[[MPMusicPlayerController applicationMusicPlayer] setVolume:volume];</span><br><span class="line">        self.slider.value = volume;</span><br><span class="line">        _lastVolume = volume;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>二是在本需求中，播放一段科大讯飞提供的翻译语音后，再进行调节音量，会出现媒体音量和系统铃声同时更改的效果。这显然是不正常的。最终的解决方案是，在语音播放结束的代理方法中重新获取当前音量，并监听音量变化，即initAudioSession方法。代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (void)FanyiBofangEND</span><br><span class="line">&#123;</span><br><span class="line">    _lastVolume = [[AVAudioSession sharedInstance] outputVolume];</span><br><span class="line">    [self initAudioSession];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-          
+          <h4 id="需求："><a href="#需求：" class="headerlink" title="需求："></a>需求：</h4><p>在ios系统中，音量键控制一般是用于调节铃声。通常只有在播放音乐时，才会切换成调节媒体音量的模式。而铃声和音量又是相互独立的。最近遇到了一个需求，是在播放语音的页面中使音量键全程控制媒体音量。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/29/ios音量键调节媒体音量/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -550,7 +541,8 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+            <a id="more"></a> 
+<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
@@ -623,7 +615,7 @@
                src="/images/avatar.png"
                alt="Mick" />
           <p class="site-author-name" itemprop="name">Mick</p>
-          <p class="site-description motion-element" itemprop="description">ios developer, work in 16fan.com</p>
+          <p class="site-description motion-element" itemprop="description">ios developer</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -689,7 +681,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
+    NexT.Muse
   </a>
 </div>
 
@@ -754,13 +746,6 @@
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
-
-
 
   
 
