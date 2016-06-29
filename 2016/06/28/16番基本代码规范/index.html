@@ -80,25 +80,22 @@
 
 
 
-<meta name="description" content="layout: poststitle: 16番iOS代码规范(初稿)date: 2016-06-29 10:00:44
-1. 模型/视图/控制器分离（MVC）
+<meta name="description" content="1. 模型/视图/控制器分离（MVC）
 分离模型与视图：不要假设模型或者数据源的表示方法。保持数据源与表示层之间的接口抽象。视图不需要了解模型的逻辑（主要的规则是问问你自己，对于数据源的一个实例，有没有可能有多种不同状态的表示方法）。
-分离控制器与模型、视图：不要把所有的 “业务">
+分离控制器与模型、视图：不要把所有的 “业务逻辑” 放进跟视图有关的类中。这使代码非常难以复用。使用控制器类来处理这些代码，但保证控制器不需要了解太多表示层的逻辑。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="蓝猫mick的技术博客">
+<meta property="og:title" content="16番iOS代码规范(初稿)">
 <meta property="og:url" content="http://yoursite.com/2016/06/28/16番基本代码规范/index.html">
 <meta property="og:site_name" content="蓝猫mick的技术博客">
-<meta property="og:description" content="layout: poststitle: 16番iOS代码规范(初稿)date: 2016-06-29 10:00:44
-1. 模型/视图/控制器分离（MVC）
+<meta property="og:description" content="1. 模型/视图/控制器分离（MVC）
 分离模型与视图：不要假设模型或者数据源的表示方法。保持数据源与表示层之间的接口抽象。视图不需要了解模型的逻辑（主要的规则是问问你自己，对于数据源的一个实例，有没有可能有多种不同状态的表示方法）。
-分离控制器与模型、视图：不要把所有的 “业务">
-<meta property="og:updated_time" content="2016-06-29T02:14:42.000Z">
+分离控制器与模型、视图：不要把所有的 “业务逻辑” 放进跟视图有关的类中。这使代码非常难以复用。使用控制器类来处理这些代码，但保证控制器不需要了解太多表示层的逻辑。">
+<meta property="og:updated_time" content="2016-06-29T02:16:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="蓝猫mick的技术博客">
-<meta name="twitter:description" content="layout: poststitle: 16番iOS代码规范(初稿)date: 2016-06-29 10:00:44
-1. 模型/视图/控制器分离（MVC）
+<meta name="twitter:title" content="16番iOS代码规范(初稿)">
+<meta name="twitter:description" content="1. 模型/视图/控制器分离（MVC）
 分离模型与视图：不要假设模型或者数据源的表示方法。保持数据源与表示层之间的接口抽象。视图不需要了解模型的逻辑（主要的规则是问问你自己，对于数据源的一个实例，有没有可能有多种不同状态的表示方法）。
-分离控制器与模型、视图：不要把所有的 “业务">
+分离控制器与模型、视图：不要把所有的 “业务逻辑” 放进跟视图有关的类中。这使代码非常难以复用。使用控制器类来处理这些代码，但保证控制器不需要了解太多表示层的逻辑。">
 
 
 
@@ -116,7 +113,7 @@
   };
 </script>
 
-  <title>  | 蓝猫mick的技术博客 </title>
+  <title> 16番iOS代码规范(初稿) | 蓝猫mick的技术博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -266,7 +263,7 @@
             
             
               
-                
+                16番iOS代码规范(初稿)
               
             
           </h1>
@@ -300,7 +297,7 @@
 
           
           
-             <span id="/2016/06/28/16番基本代码规范/" class="leancloud_visitors" data-flag-title="">
+             <span id="/2016/06/28/16番基本代码规范/" class="leancloud_visitors" data-flag-title="16番iOS代码规范(初稿)">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -322,8 +319,7 @@
       
 
       
-        <p>layout: posts<br>title: 16番iOS代码规范(初稿)<br>date: 2016-06-29 10:00:44</p>
-<h4 id="1-模型-视图-控制器分离（MVC）"><a href="#1-模型-视图-控制器分离（MVC）" class="headerlink" title="1. 模型/视图/控制器分离（MVC）"></a>1. 模型/视图/控制器分离（MVC）</h4><ul>
+        <h4 id="1-模型-视图-控制器分离（MVC）"><a href="#1-模型-视图-控制器分离（MVC）" class="headerlink" title="1. 模型/视图/控制器分离（MVC）"></a>1. 模型/视图/控制器分离（MVC）</h4><ul>
 <li>分离模型与视图：不要假设模型或者数据源的表示方法。保持数据源与表示层之间的接口抽象。视图不需要了解模型的逻辑（主要的规则是问问你自己，对于数据源的一个实例，有没有可能有多种不同状态的表示方法）。</li>
 <li>分离控制器与模型、视图：不要把所有的 “业务逻辑” 放进跟视图有关的类中。这使代码非常难以复用。使用控制器类来处理这些代码，但保证控制器不需要了解太多表示层的逻辑。</li>
 <li>使用 @protocol 来定义回调 API，如果不是所有的方法都必须实现，使用 @optional<code>（特例：使用 Objective-C 1.0 时，</code>@optional 不可用，可使用类别来定义一个 “非正规的协议”）。<a id="more"></a> 
@@ -401,7 +397,7 @@
     <div class="post-spread">
       
         <div class="ds-share flat" data-thread-key="2016/06/28/16番基本代码规范/"
-     data-title=""
+     data-title="16番iOS代码规范(初稿)"
      data-content=""
      data-url="http://yoursite.com/2016/06/28/16番基本代码规范/">
   <div class="ds-share-inline">
@@ -431,7 +427,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/06/28/16番基本代码规范/"
-           data-title="" data-url="http://yoursite.com/2016/06/28/16番基本代码规范/">
+           data-title="16番iOS代码规范(初稿)" data-url="http://yoursite.com/2016/06/28/16番基本代码规范/">
       </div>
     
   </div>
