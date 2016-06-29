@@ -259,6 +259,262 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/28/16番基本代码规范/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-28T18:01:00+08:00" content="2016-06-28">
+              2016-06-28
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/28/16番基本代码规范/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/28/16番基本代码规范/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/06/28/16番基本代码规范/" class="leancloud_visitors" data-flag-title="">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="16番iOS代码规范"><a href="#16番iOS代码规范" class="headerlink" title="16番iOS代码规范"></a>16番iOS代码规范</h3><hr>
+<h4 id="1-模型-视图-控制器分离（MVC）"><a href="#1-模型-视图-控制器分离（MVC）" class="headerlink" title="1. 模型/视图/控制器分离（MVC）"></a>1. 模型/视图/控制器分离（MVC）</h4><ul>
+<li>分离模型与视图：不要假设模型或者数据源的表示方法。保持数据源与表示层之间的接口抽象。视图不需要了解模型的逻辑（主要的规则是问问你自己，对于数据源的一个实例，有没有可能有多种不同状态的表示方法）。</li>
+<li>分离控制器与模型、视图：不要把所有的 “业务逻辑” 放进跟视图有关的类中。这使代码非常难以复用。使用控制器类来处理这些代码，但保证控制器不需要了解太多表示层的逻辑。</li>
+<li>使用 @protocol 来定义回调 API，如果不是所有的方法都必须实现，使用 @optional<code>（特例：使用 Objective-C 1.0 时，</code>@optional 不可用，可使用类别来定义一个 “非正规的协议”）。</li>
+</ul>
+<h4 id="2-命名："><a href="#2-命名：" class="headerlink" title="2. 命名："></a>2. 命名：</h4><ul>
+<li>方法名及变量名应该以小写字母开头，并混合驼峰格式。每个具名参数也应该以小写字母开头。</li>
+<li>类名：类名（以及类别、协议名）应首字母大写，并以驼峰格式分割单词。应用层 的代码，应该尽量避免不必要的前缀。当编写的代码期望在不同应用程序间复用时，应使用前缀（如：GTMSendMessage）。</li>
+</ul>
+<h4 id="3-注释："><a href="#3-注释：" class="headerlink" title="3. 注释："></a>3. 注释：</h4><ul>
+<li>声明部分的注释：每个接口、类别以及协议应辅以注释，以描述它的目的及与整个项目的关系</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// A delegate for NSApplication to handle notifications about app</span><br><span class="line">// launch and shutdown. Owned by the main app controller.</span><br><span class="line">@interface MyAppDelegate : NSObject &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<ul>
+<li>实现部分的注释：使用 | 来引用注释中的变量名及符号名而不是使用引号。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// Sometimes we need |count| to be less than zero.</span><br></pre></td></tr></table></figure>
+<h5 id="注释的基本规范参照Airbnb的编码规范之17-注释"><a href="#注释的基本规范参照Airbnb的编码规范之17-注释" class="headerlink" title="注释的基本规范参照Airbnb的编码规范之17. 注释"></a>注释的基本规范参照Airbnb的<a href="https://github.com/yuche/javascript#comments" target="_blank" rel="external">编码规范之17. 注释</a></h5><ul>
+<li>17.1 使用 /<em>* … </em>/ 作为多行注释。包含描述、指定所有参数和返回值的类型和值。</li>
+<li>17.2 使用 // 作为单行注释。在评论对象上面另起一行使用单行注释。在注释前插入空行。</li>
+<li>17.3 给注释增加 FIXME 或 TODO 的前缀可以帮助其他开发者快速了解这是一个需要复查的问题，或是给需要实现的功能提供一个解决方式。这将有别于常见的注释，因为它们是可操作的。使用 FIXME – need to figure this out 或者 TODO – need to implement。</li>
+</ul>
+<h4 id="4-图标和布局"><a href="#4-图标和布局" class="headerlink" title="4. 图标和布局"></a>4. 图标和布局</h4><ul>
+<li>新页面布局使用Masonry库创建约束从而自动布局，并采用HYBMasonryAutoCellHeight自动计算tableViewCell高度。</li>
+<li>图标全放入Images.xcassets中，并且按板块分类放入相应的文件夹。</li>
+</ul>
+<blockquote>
+<p>规范参考如下：</p>
+<ol>
+<li>苹果官方文档<a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/CodingGuidelines/CodingGuidelines.html" target="_blank" rel="external">Coding Guidelines for Cocoa</a></li>
+<li>谷歌开源项目风格指南<a href="http://zh-google-styleguide.readthedocs.io/en/latest/" target="_blank" rel="external">Google Objective-C Style Guide （翻译版）</a></li>
+<li>WordPress开源项目规范<a href="https://github.com/wordpress-mobile/objective-c-style-guide" target="_blank" rel="external">Wordpress-iOS</a>，主要基于上面两个规范。</li>
+</ol>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/29/AFNetworking af_resume递归/" itemprop="url">
+                  AFNetworking af_resume swizzling方法调配在iOS7上的错误解决
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-29T12:00:44+08:00" content="2016-04-29">
+              2016-04-29
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/29/AFNetworking af_resume递归/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/29/AFNetworking af_resume递归/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/04/29/AFNetworking af_resume递归/" class="leancloud_visitors" data-flag-title="AFNetworking af_resume swizzling方法调配在iOS7上的错误解决">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h4><p>AFN框架是iOS开发中很常见的一个框架。项目中使用的是3.0以前版本的AFNetworking框架，最近在iOS7机型上面出现了闪退问题，xcode报错显示是af_resume方法出现了递归执行。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/29/AFNetworking af_resume递归/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/29/iOS音量键调节媒体音量/" itemprop="url">
                   iOS音量键调节媒体音量
                 </a>
@@ -620,7 +876,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -630,7 +886,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
