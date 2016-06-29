@@ -80,25 +80,25 @@
 
 
 
-<meta name="description" content="16番iOS代码规范
+<meta name="description" content="layout: poststitle: 16番iOS代码规范(初稿)date: 2016-06-29 10:00:44
 1. 模型/视图/控制器分离（MVC）
 分离模型与视图：不要假设模型或者数据源的表示方法。保持数据源与表示层之间的接口抽象。视图不需要了解模型的逻辑（主要的规则是问问你自己，对于数据源的一个实例，有没有可能有多种不同状态的表示方法）。
-分离控制器与模型、视图：不要把所有的 “业务逻辑” 放进跟视图有关的类中。这使代码非常难以复用。使用控制器类来处理这些代码，但保证控制器不需要">
+分离控制器与模型、视图：不要把所有的 “业务">
 <meta property="og:type" content="article">
 <meta property="og:title" content="蓝猫mick的技术博客">
 <meta property="og:url" content="http://yoursite.com/2016/06/28/16番基本代码规范/index.html">
 <meta property="og:site_name" content="蓝猫mick的技术博客">
-<meta property="og:description" content="16番iOS代码规范
+<meta property="og:description" content="layout: poststitle: 16番iOS代码规范(初稿)date: 2016-06-29 10:00:44
 1. 模型/视图/控制器分离（MVC）
 分离模型与视图：不要假设模型或者数据源的表示方法。保持数据源与表示层之间的接口抽象。视图不需要了解模型的逻辑（主要的规则是问问你自己，对于数据源的一个实例，有没有可能有多种不同状态的表示方法）。
-分离控制器与模型、视图：不要把所有的 “业务逻辑” 放进跟视图有关的类中。这使代码非常难以复用。使用控制器类来处理这些代码，但保证控制器不需要">
-<meta property="og:updated_time" content="2016-06-29T02:10:47.000Z">
+分离控制器与模型、视图：不要把所有的 “业务">
+<meta property="og:updated_time" content="2016-06-29T02:14:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="蓝猫mick的技术博客">
-<meta name="twitter:description" content="16番iOS代码规范
+<meta name="twitter:description" content="layout: poststitle: 16番iOS代码规范(初稿)date: 2016-06-29 10:00:44
 1. 模型/视图/控制器分离（MVC）
 分离模型与视图：不要假设模型或者数据源的表示方法。保持数据源与表示层之间的接口抽象。视图不需要了解模型的逻辑（主要的规则是问问你自己，对于数据源的一个实例，有没有可能有多种不同状态的表示方法）。
-分离控制器与模型、视图：不要把所有的 “业务逻辑” 放进跟视图有关的类中。这使代码非常难以复用。使用控制器类来处理这些代码，但保证控制器不需要">
+分离控制器与模型、视图：不要把所有的 “业务">
 
 
 
@@ -322,13 +322,12 @@
       
 
       
-        <h3 id="16番iOS代码规范"><a href="#16番iOS代码规范" class="headerlink" title="16番iOS代码规范"></a>16番iOS代码规范</h3><hr>
+        <p>layout: posts<br>title: 16番iOS代码规范(初稿)<br>date: 2016-06-29 10:00:44</p>
 <h4 id="1-模型-视图-控制器分离（MVC）"><a href="#1-模型-视图-控制器分离（MVC）" class="headerlink" title="1. 模型/视图/控制器分离（MVC）"></a>1. 模型/视图/控制器分离（MVC）</h4><ul>
 <li>分离模型与视图：不要假设模型或者数据源的表示方法。保持数据源与表示层之间的接口抽象。视图不需要了解模型的逻辑（主要的规则是问问你自己，对于数据源的一个实例，有没有可能有多种不同状态的表示方法）。</li>
 <li>分离控制器与模型、视图：不要把所有的 “业务逻辑” 放进跟视图有关的类中。这使代码非常难以复用。使用控制器类来处理这些代码，但保证控制器不需要了解太多表示层的逻辑。</li>
-<li>使用 @protocol 来定义回调 API，如果不是所有的方法都必须实现，使用 @optional<code>（特例：使用 Objective-C 1.0 时，</code>@optional 不可用，可使用类别来定义一个 “非正规的协议”）。</li>
-</ul>
-<h4 id="2-命名："><a href="#2-命名：" class="headerlink" title="2. 命名："></a>2. 命名：</h4><ul>
+<li>使用 @protocol 来定义回调 API，如果不是所有的方法都必须实现，使用 @optional<code>（特例：使用 Objective-C 1.0 时，</code>@optional 不可用，可使用类别来定义一个 “非正规的协议”）。<a id="more"></a> 
+<h4 id="2-命名："><a href="#2-命名：" class="headerlink" title="2. 命名："></a>2. 命名：</h4></li>
 <li>方法名及变量名应该以小写字母开头，并混合驼峰格式。每个具名参数也应该以小写字母开头。</li>
 <li>类名：类名（以及类别、协议名）应首字母大写，并以驼峰格式分割单词。应用层 的代码，应该尽量避免不必要的前缀。当编写的代码期望在不同应用程序间复用时，应使用前缀（如：GTMSendMessage）。</li>
 </ul>
@@ -516,7 +515,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#16番iOS代码规范"><span class="nav-number">1.</span> <span class="nav-text">16番iOS代码规范</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-模型-视图-控制器分离（MVC）"><span class="nav-number">1.1.</span> <span class="nav-text">1. 模型/视图/控制器分离（MVC）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-命名："><span class="nav-number">1.2.</span> <span class="nav-text">2. 命名：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-注释："><span class="nav-number">1.3.</span> <span class="nav-text">3. 注释：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#注释的基本规范参照Airbnb的编码规范之17-注释"><span class="nav-number">1.3.1.</span> <span class="nav-text">注释的基本规范参照Airbnb的编码规范之17. 注释</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-图标和布局"><span class="nav-number">1.4.</span> <span class="nav-text">4. 图标和布局</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-模型-视图-控制器分离（MVC）"><span class="nav-number">1.</span> <span class="nav-text">1. 模型/视图/控制器分离（MVC）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-命名："><span class="nav-number">2.</span> <span class="nav-text">2. 命名：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-注释："><span class="nav-number">3.</span> <span class="nav-text">3. 注释：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#注释的基本规范参照Airbnb的编码规范之17-注释"><span class="nav-number">3.1.</span> <span class="nav-text">注释的基本规范参照Airbnb的编码规范之17. 注释</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-图标和布局"><span class="nav-number">4.</span> <span class="nav-text">4. 图标和布局</span></a></li></ol></div>
             
           </div>
         </section>
