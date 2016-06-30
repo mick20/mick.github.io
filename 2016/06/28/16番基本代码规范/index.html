@@ -93,7 +93,7 @@
 分离控制器与模型、视图：不要把所有的 “业务逻辑” 放进跟视图有关的类中。这使代码非常难以复用。使用控制器类来处理这些代码，但保证控制器不需要了解太多表示层的逻辑。
 使用">
 <meta property="og:image" content="http://yoursite.com/images/pragma.png">
-<meta property="og:updated_time" content="2016-06-29T02:55:00.000Z">
+<meta property="og:updated_time" content="2016-06-30T09:24:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="16番iOS代码规范(初稿)">
 <meta name="twitter:description" content="模型/视图/控制器分离（MVC）
@@ -332,6 +332,7 @@
 </ul>
 <h3 id="命名："><a href="#命名：" class="headerlink" title="命名："></a>命名：</h3><ul>
 <li>方法名及变量名应该以小写字母开头，并混合驼峰格式。每个具名参数也应该以小写字母开头。</li>
+<li>方法名及变量名表达清晰不含缩写，如回复数量为<code>numerOfReplies</code>而不是<code>Replies</code>，代码可读性高，基本不需要看注释就能明白用途。</li>
 <li>类名：类名（以及类别、协议名）应首字母大写，并以驼峰格式分割单词。应用层 的代码，应该尽量避免不必要的前缀。当编写的代码期望在不同应用程序间复用时，应使用前缀（如：GTMSendMessage）。</li>
 </ul>
 <h3 id="注释："><a href="#注释：" class="headerlink" title="注释："></a>注释：</h3><ul>
